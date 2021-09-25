@@ -2,7 +2,10 @@
 
 @section('content')
     @if (Auth::check())
+        <div class="row">
         {{ Auth::user()->name }}
+        @include('tasks.index')
+        </div>
     @else
         <div class="center jumbotron">
             <div class="text-center">
@@ -11,5 +14,5 @@
                 {!! link_to_route('signup.get', 'Sign up now!', [], ['class' => 'btn btn-lg btn-primary']) !!}
             </div>
         </div>
-    @elseif
+    @endif
 @endsection
