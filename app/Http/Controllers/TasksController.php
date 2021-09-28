@@ -82,20 +82,15 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {   
         // idの値でユーザを検索して取得
-        $user = User::findOrFail($id);
+        $task = Task::findOrFail($id);
 
-        // 関係するモデルの件数をロード
-        $user->loadRelationshipCounts();
-
-        // ユーザの投稿一覧を作成日時の降順で取得
-        $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
-
-        // ユーザ詳細ビューでそれらを表示
+        
+        // 詳細ビューでそれらを表示
         return view('tasks.show', [
-            'tasks' => $tasks,
+            'task' => $task,
         ]);
         
     }
